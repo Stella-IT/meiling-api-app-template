@@ -1,0 +1,17 @@
+{
+  "meiling": {
+    "hostname": "https://meiling.stella-api.dev"
+  },
+  "fastify": {
+    "listen": 8080,
+    "proxy": {
+      "allowedHosts": []
+    }
+  },
+  "permissions": {
+    "required": [
+      "openid",
+      "console"
+    ]
+  }
+}
