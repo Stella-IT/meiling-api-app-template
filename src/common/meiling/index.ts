@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { config } from '../../';
 import { MeilingV1OAuthAccessTokenInfo, MeilingV1OAuthOpenIDData } from './interface';
 
-function handleAxiosError(e: any) {
+function handleAxiosError(e: any): AxiosResponse | undefined {
   const response = e.response as AxiosResponse;
   if (response) {
     return response;
@@ -11,7 +11,7 @@ function handleAxiosError(e: any) {
   }
 }
 
-export async function getUser(accessToken: string) {
+export async function getUser(accessToken: string): Promise<MeilingV1OAuthOpenIDData | false> {
   try {
     const data = await axios.get(config.meiling.hostname + '/v1/oauth2/userinfo', {
       headers: {
@@ -41,7 +41,7 @@ export async function getToken(accessToken: string): Promise<MeilingV1OAuthAcces
   }
 }
 
-export async function permCheck(accessToken: string, permissions: string[]) {
+export async function permCheck(accessToken: string, permissions: string[]): Promise<boolean | undefined> {
   const tokenInfo = await getToken(accessToken);
   if (!tokenInfo) return;
 

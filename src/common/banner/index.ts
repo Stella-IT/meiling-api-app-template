@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import Figlet from 'figlet';
 import { isDevelopment, packageJson } from '../../';
 
-export function showBanner() {
+export function showBanner(): void {
   const title = packageJson?.banner?.title ? packageJson?.banner?.title : packageJson.name;
 
   console.log(Figlet.textSync(title));
@@ -19,7 +19,7 @@ export function showBanner() {
   console.log();
 }
 
-export function devModeCheck() {
+export function devModeCheck(): void {
   if (isDevelopment) {
     console.log(
       chalk.yellow('Launching in Development mode, ') +

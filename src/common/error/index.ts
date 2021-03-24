@@ -24,14 +24,20 @@ export function getStatusCode(error: APIError): number {
   ((n: never) => {})(error);
 }
 
-export function buildError(error: APIError, description?: string) {
+export function buildError(
+  error: APIError,
+  description?: string,
+): {
+  error: APIError;
+  description?: string;
+} {
   return {
     error,
     description,
   };
 }
 
-export function sendError(rep: FastifyReply, error: APIError, description?: string) {
+export function sendError(rep: FastifyReply, error: APIError, description?: string): void {
   const payload = buildError(error, description);
   rep.send(payload);
 }

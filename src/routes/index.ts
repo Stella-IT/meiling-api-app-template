@@ -2,7 +2,7 @@ import { FastifyInstance } from 'fastify';
 import { isDevelopment, packageJson } from '..';
 import v1Handler from './v1';
 
-export function registerRootEndpoints(app: FastifyInstance) {
+export function registerRootEndpoints(app: FastifyInstance): void {
   app.get('/', (req, rep) => {
     rep.send({
       hello: 'world',

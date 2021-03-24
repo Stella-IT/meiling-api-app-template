@@ -4,6 +4,13 @@ export interface Config {
   };
   fastify: {
     listen: number | string;
+    unixSocket?: {
+      chown?: {
+        uid?: number;
+        gid?: number;
+      };
+      chmod?: number;
+    };
     proxy?: {
       allowedHosts?: string[];
     };

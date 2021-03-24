@@ -1,6 +1,5 @@
 import { prisma } from '../..';
 import { MeilingV1OAuthOpenIDData } from '../meiling/interface';
-import { InputJsonValue } from '@prisma/client';
 
 export async function checkIsAdmin(id_token: MeilingV1OAuthOpenIDData): Promise<boolean> {
   const user = await prisma.user.findFirst({
@@ -39,7 +38,7 @@ export async function updateLastAuthorized(id_token: MeilingV1OAuthOpenIDData, s
       sub: id_token.sub,
     },
     data: {
-      id_token: saveUserData ? ((id_token as unknown) as InputJsonValue) : undefined,
+      id_token: saveUserData ? (id_token as any) : undefined,
       lastAuthorized: new Date(),
     },
   });

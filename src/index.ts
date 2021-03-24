@@ -43,4 +43,21 @@ if (typeof config.fastify.listen === 'string') {
   }
 }
 
-app.listen(config.fastify.listen);
+(async (): Promise<void> => {
+  await app.listen(config.fastify.listen);
+
+  if (typeof config.fastify.listen === 'string') {
+    if (config.fastify.unixSocket?.chown?.uid !== undefined && config.fastify.unixSocket?.chown?.gid !== undefined) {
+      console.log('[Startup] Setting up Owner Permissions of Socket...');
+      fs.chownSync(
+        config.fastify.listen,
+        config.fastify.unixSocket?.chown?.uid as number,
+        config.fastify.unixSocket?.chown?.gid as number,
+      );
+    }
+    if (config.fastify.unixSocket?.chmod) {
+      console.log('[Startup] Setting up Access Permissions of Socket...');
+      fs.chmodSync(config.fastify.listen, config.fastify.unixSocket.chmod);
+    }
+  }
+})();

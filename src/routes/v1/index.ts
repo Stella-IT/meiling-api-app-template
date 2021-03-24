@@ -11,7 +11,7 @@ export interface FastifyRequestWithUser extends FastifyRequest {
   isAdmin: boolean;
 }
 
-const v1Handler = (app: FastifyInstance, opts: FastifyPluginOptions, done: () => void) => {
+const v1Handler = (app: FastifyInstance, opts: FastifyPluginOptions, done: () => void): void => {
   app.get('/', (req, rep) => {
     rep.send({
       version: 1,
