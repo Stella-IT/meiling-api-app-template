@@ -9,4 +9,4 @@ This template repository is for creating API Endpoints (which provides informati
 | ESLint                    | ![ESLint](https://github.com/Stella-IT/Meiling-api-app-template/workflows/ESLint/badge.svg)                    |
 
 ## License
-[WTFPL](LICENSE)
+[MIT License](LICENSE)
