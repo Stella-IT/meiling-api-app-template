@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "App API",
   "main": "dist/",
-  "repository": "https://github.com/Stella-IT/meiling-api-app-template",
+  "repository": "https://github.com/meiling-gatekeeper/api-template",
   "author": "Alex4386 <psh010209@gmail.com>",
   "private": true,
   "banner": {

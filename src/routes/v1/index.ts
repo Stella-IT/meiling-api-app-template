@@ -5,6 +5,7 @@ import { MeilingV1OAuthOpenIDData } from '../../common/meiling/interface';
 import { getTokenFromRequest } from '../../common/token';
 import * as Meiling from '../../common/meiling';
 import * as User from '../../common/user';
+import adminHandler from './admin';
 
 export interface FastifyRequestWithUser extends FastifyRequest {
   user: MeilingV1OAuthOpenIDData;
@@ -55,6 +56,8 @@ const v1LoginRequiredHandler = (app: FastifyInstance, opts: FastifyPluginOptions
     await User.createUserIfNotExist(user);
     await User.updateLastAuthorized(user);
   });
+
+  app.register(adminHandler, { prefix: '/admin' });
 
   done();
 };
