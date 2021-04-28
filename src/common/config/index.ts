@@ -18,4 +18,7 @@ export interface Config {
   permissions: {
     required: string[];
   };
+  admin: {
+    token: string[];
+  };
 }

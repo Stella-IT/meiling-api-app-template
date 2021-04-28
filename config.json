@@ -13,5 +13,8 @@
       "openid",
       "console"
     ]
+  },
+  "admin": {
+    "token": []
   }
 }

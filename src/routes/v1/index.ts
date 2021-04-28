@@ -20,6 +20,7 @@ const v1Handler = (app: FastifyInstance, opts: FastifyPluginOptions, done: () =>
   });
 
   app.register(v1LoginRequiredHandler);
+  app.register(adminHandler, { prefix: '/admin' });
 
   done();
 };
@@ -56,8 +57,6 @@ const v1LoginRequiredHandler = (app: FastifyInstance, opts: FastifyPluginOptions
     await User.createUserIfNotExist(user);
     await User.updateLastAuthorized(user);
   });
-
-  app.register(adminHandler, { prefix: '/admin' });
 
   done();
 };
