@@ -1,7 +1,7 @@
 import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 import { config } from '../../..';
 import { FastifyRequestWithUser } from '..';
-import { APIError, sendError } from '../../../common/error';
+import { APIError, APIErrorType } from '../../../common/error';
 import { getTokenFromRequest } from '../../../common/token';
 import * as Meiling from '../../../common/meiling';
 import * as User from '../../../common/user';
@@ -10,8 +10,7 @@ const adminHandler = (app: FastifyInstance, opts: FastifyPluginOptions, done: ()
   app.addHook('onRequest', async (req, rep) => {
     const token = getTokenFromRequest(req);
     if (!token) {
-      sendError(rep, APIError.TOKEN_NOT_FOUND, 'token not found');
-      throw new Error();
+      throw new APIError(APIErrorType.TOKEN_NOT_FOUND, 'token not found');
     }
 
     if (config.admin.token.includes(token.token)) {
@@ -19,19 +18,21 @@ const adminHandler = (app: FastifyInstance, opts: FastifyPluginOptions, done: ()
     } else {
       const data = await Meiling.getToken(token.token);
       if (!data) {
-        sendError(rep, APIError.INVALID_TOKEN, 'token is invalid');
-        throw new Error();
+        throw new APIError(APIErrorType.INVALID_TOKEN, 'token is invalid');
       }
 
       const permCheck = await Meiling.permCheck(token.token, config.permissions.required);
       if (!permCheck) {
-        sendError(rep, APIError.INSUFFICIENT_PERMISSION, 'token does not meet with minimum sufficient permission');
+        throw new APIError(
+          APIErrorType.INSUFFICIENT_PERMISSION,
+          'token does not meet with minimum sufficient permission',
+        );
         throw new Error();
       }
 
       const user = await Meiling.getUser(token.token);
       if (!user) {
-        sendError(rep, APIError.USER_NOT_FOUND, 'unable to load user inforamtion');
+        throw new APIError(APIErrorType.USER_NOT_FOUND, 'unable to load user inforamtion');
         throw new Error();
       }
 
@@ -43,7 +44,7 @@ const adminHandler = (app: FastifyInstance, opts: FastifyPluginOptions, done: ()
     }
 
     if (!(req as FastifyRequestWithUser).isAdmin) {
-      sendError(rep, APIError.INVALID_TOKEN, 'invalid token');
+      throw new APIError(APIErrorType.INVALID_TOKEN, 'invalid token');
       throw new Error();
     }
   });

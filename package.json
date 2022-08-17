@@ -3,14 +3,17 @@
   "version": "0.0.1",
   "description": "App API",
   "main": "dist/",
-  "repository": "https://github.com/meiling-gatekeeper/api-template",
+  "repository": "https://github.com/meili-NG/api-template",
   "author": "Alex4386 <psh010209@gmail.com>",
   "private": true,
   "banner": {
     "title": "APP API"
   },
   "dependencies": {
-    "@prisma/client": "2.19.0",
+    "@prisma/client": "^4.2.1",
+    "@sentry/node": "^7.10.0",
+    "@sentry/tracing": "^7.10.0",
+    "@sentry/types": "^7.10.0",
     "axios": "^0.21.1",
     "fastify": "^3.11.0",
     "fastify-cors": "^5.2.0",
@@ -30,7 +33,7 @@
     "lint-staged": "^10.5.1",
     "nodemon": "^2.0.7",
     "prettier": "^2.1.2",
-    "prisma": "2.19.0",
+    "prisma": "^4.2.1",
     "ts-node": "^9.0.0"
   },
   "scripts": {

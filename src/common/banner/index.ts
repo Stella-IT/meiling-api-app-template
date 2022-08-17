@@ -5,13 +5,13 @@ import { isDevelopment, packageJson } from '../../';
 export function showBanner(): void {
   const title = packageJson?.banner?.title ? packageJson?.banner?.title : packageJson.name;
 
-  console.log(Figlet.textSync(title));
+  console.log(Figlet.textSync(title, 'Small Slant'));
   console.log();
   console.log(`${chalk.bold(title)} - ${chalk.italic(`ver. ${packageJson.version}`)}`);
   console.log(chalk.cyan(chalk.underline(packageJson.repository)));
   console.log();
   console.log(
-    `Copyright © Meiling Project Contributors and ${chalk.bold(
+    `Copyright © meiliNG Contributors and ${chalk.bold(
       `${chalk.cyan('Stella')} ${chalk.blue('IT')} ${chalk.magenta('Inc.')}`,
     )}`,
   );

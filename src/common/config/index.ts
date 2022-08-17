@@ -21,4 +21,8 @@ export interface Config {
   admin: {
     token: string[];
   };
+  sentry?: {
+    serverName?: string;
+    dsn: string;
+  };
 }
