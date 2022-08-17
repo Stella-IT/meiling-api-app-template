@@ -18,6 +18,6 @@
     "token": []
   },
   "sentry": {
-    "dsn": "https://3f434d3a217a4585aa1489c4ff553d7a@o1350255.ingest.sentry.io/6658300"
+    "dsn": ""
   }
 }
