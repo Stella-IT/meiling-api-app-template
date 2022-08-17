@@ -16,5 +16,8 @@
   },
   "admin": {
     "token": []
+  },
+  "sentry": {
+    "dsn": ""
   }
 }
