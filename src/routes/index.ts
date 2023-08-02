@@ -1,8 +1,7 @@
-import { FastifyInstance } from 'fastify';
+import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 import { isDevelopment, packageJson } from '..';
-import v1Handler from './v1';
 
-export function registerRootEndpoints(app: FastifyInstance): void {
+function rootPlugin(app: FastifyInstance, opts: FastifyPluginOptions, done: () => void): void {
   app.get('/', (req, rep) => {
     rep.send({
       hello: 'world',
@@ -15,8 +14,10 @@ export function registerRootEndpoints(app: FastifyInstance): void {
     });
   });
 
-  app.register(v1Handler, { prefix: '/v1' });
+  done();
 }
+
+export default rootPlugin;
 
 // Did you know?
 // This Project is started at 2021-02-09, which is Maintainer's 20th Birthday.

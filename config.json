@@ -3,7 +3,10 @@
     "hostname": "https://meiling.stella-api.dev"
   },
   "fastify": {
-    "listen": 8123,
+    "listen": {
+      "port": 8123,
+      "bind": "0.0.0.0"
+    },
     "proxy": {
       "allowedHosts": []
     }

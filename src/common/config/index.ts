@@ -3,7 +3,10 @@ export interface Config {
     hostname: string;
   };
   fastify: {
-    listen: number | string;
+    listen: {
+      port: number;
+      bind?: string;
+    };
     unixSocket?: {
       chown?: {
         uid?: number;

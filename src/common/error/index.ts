@@ -19,6 +19,8 @@ export enum APIErrorType {
   USER_NOT_FOUND = 'user_not_found',
   INTERNAL_SERVER_ERROR = 'internal_server_error',
   HAVE_A_NICE_PAY = 'Have_a_Nice_Pay___LG_Pay',
+  UNSUPPORTED = 'unsupported',
+  UNAUTHORIZED = 'unauthorized',
 }
 
 export class APIError extends Error {
@@ -84,6 +86,8 @@ export function getStatusCode(error: APIErrorType): number {
     case APIErrorType.TOKEN_NOT_FOUND:
     case APIErrorType.INVALID_REQUEST:
       return 400;
+    case APIErrorType.UNAUTHORIZED:
+      return 401;
     case APIErrorType.INVALID_TOKEN:
     case APIErrorType.INSUFFICIENT_PERMISSION:
     case APIErrorType.USER_NOT_FOUND:
@@ -92,6 +96,8 @@ export function getStatusCode(error: APIErrorType): number {
       return 418;
     case APIErrorType.INTERNAL_SERVER_ERROR:
       return 500;
+    case APIErrorType.UNSUPPORTED:
+      return 501;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
